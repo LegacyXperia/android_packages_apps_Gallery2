@@ -2112,6 +2112,15 @@ public class VideoModule implements CameraModule,
             mParameters.set("video-stabilization", "true");
         }
 
+        String disMode = mPreferences.getString(
+                CameraSettings.KEY_DIS,
+                mActivity.getString(R.string.pref_camera_dis_default));
+        Log.v(TAG, "DIS value =" + disMode);
+        if (isSupported(disMode,
+                        CameraSettings.getSupportedDISModes(mParameters))) {
+            mParameters.set(CameraSettings.KEY_QC_DIS_MODE, disMode);
+        }
+
         // Set picture size.
         // The logic here is different from the logic in still-mode camera.
         // There we determine the preview size based on the picture size, but

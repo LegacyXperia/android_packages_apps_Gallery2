@@ -83,6 +83,10 @@ public class CameraSettings {
     public static final String KEY_BEAUTY_MODE = "pref_camera_beauty_mode";
     public static final String KEY_SLOW_SHUTTER = "pref_camera_slow_shutter";
     public static final String KEY_ASD = "pref_camera_asd";
+    public static final String KEY_DIS = "pref_camera_dis_key";
+
+    private static final String KEY_QC_SUPPORTED_DIS_MODES = "dis-values";
+    public static final String KEY_QC_DIS_MODE = "dis";
 
     public static final String EXPOSURE_DEFAULT_VALUE = "0";
     public static final String VALUE_ON = "on";
@@ -175,6 +179,14 @@ public class CameraSettings {
         return duration;
     }
 
+    public static List<String> getSupportedDISModes(Parameters params) {
+        String str = params.get(KEY_QC_SUPPORTED_DIS_MODES);
+        if (str == null) {
+            return null;
+        }
+        return Arrays.asList(str.split(","));
+    }
+
     private void initPreference(PreferenceGroup group) {
         ListPreference videoQuality = group.findPreference(KEY_VIDEO_QUALITY);
         ListPreference timeLapseInterval = group.findPreference(KEY_VIDEO_TIME_LAPSE_FRAME_INTERVAL);
@@ -203,6 +215,7 @@ public class CameraSettings {
         ListPreference beautyMode = group.findPreference(KEY_BEAUTY_MODE);
         ListPreference slowShutter = group.findPreference(KEY_SLOW_SHUTTER);
         ListPreference asd = group.findPreference(KEY_ASD);
+        ListPreference disMode = group.findPreference(KEY_DIS);
 
         // Since the screen could be loaded from different resources, we need
         // to check if the preference is available here
@@ -295,6 +308,10 @@ public class CameraSettings {
         }
         if (asd != null && !Util.isAutoSceneDetectionSupported(mParameters)) {
             removePreference(group, asd.getKey());
+        }
+        if (disMode != null) {
+            filterUnsupportedOptions(group,
+                    disMode, getSupportedDISModes(mParameters));
         }
     }
 

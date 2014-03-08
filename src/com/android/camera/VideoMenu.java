@@ -206,6 +206,7 @@ public class VideoMenu extends PieController
         mOtherKeys = new String[] {
                 CameraSettings.KEY_STORAGE,
                 CameraSettings.KEY_POWER_SHUTTER,
+                CameraSettings.KEY_DIS,
                 CameraSettings.KEY_VIDEOCAMERA_JPEG
         };
         item = makeItem(R.drawable.ic_settings_holo_light);

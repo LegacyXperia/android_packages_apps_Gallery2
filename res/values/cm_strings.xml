@@ -269,4 +269,12 @@
     <string name="camera_menu_colorize_label">COLORIZE</string>
     <string name="camera_menu_effects_label">EFFECTS</string>
     <string name="camera_menu_asd_label">SMART SCENE</string>
+
+    <!-- Select DIS title -->
+    <string name="pref_camera_dis_title">Digital Image Stabilization</string>
+    <string name="pref_camera_dis_default" translatable="false">disable</string>
+
+    <!-- DIS choices -->
+    <string name="pref_camera_dis_entry_off">Off</string>
+    <string name="pref_camera_dis_entry_on">On</string>
 </resources>
